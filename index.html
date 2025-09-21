@@ -98,7 +98,7 @@
                 </main>
         </div>
 
-        <footer class="text-center mt-8 pb-4">
+  <footer class="text-center mt-8 pb-4">
             <p class="text-gray-500 text-sm">Eternamente em nossos corações.</p>
         </footer>
     </div>
@@ -112,10 +112,24 @@
     </div>
 
     <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 hidden transition-opacity duration-300">
-        <img id="modalImage" src="" alt="Imagem ampliada" class="max-w-[90%] max-h-[90%] object-contain rounded-lg shadow-xl">
+        <img id="modalImage" src="" alt="Imagem ampliada" class="max-w-[80%] max-h-[80%] object-contain rounded-lg shadow-xl">
+        
         <button id="closeModal" title="Voltar" class="absolute top-4 right-6 text-white text-5xl font-bold hover:text-gray-300 transition-colors">&times;</button>
+
+        <button id="nextImage" title="Próxima Imagem" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75 transition-colors hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <button id="prevImage" title="Imagem Anterior" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75 transition-colors hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
     </div>
-    <script>
+
+<script>
         // Script do botão de compartilhar (existente)
         const shareButton = document.getElementById('shareButton');
         shareButton.addEventListener('click', async () => {
@@ -143,37 +157,64 @@
             }
         });
 
-        // SCRIPT DA GALERIA DE FOTOS (NOVO)
+        // SCRIPT DA GALERIA DE FOTOS (CORRIGIDO)
         document.addEventListener('DOMContentLoaded', () => {
             const galleryItems = document.querySelectorAll('.gallery-item');
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeModalBtn = document.getElementById('closeModal');
+            const nextImageBtn = document.getElementById('nextImage');
+            const prevImageBtn = document.getElementById('prevImage');
+
+            let currentImageIndex = 0;
+            const images = []; // Array para armazenar as URLs de todas as imagens
+
+            // Preenche o array de imagens ao carregar a página
+            galleryItems.forEach(item => {
+                images.push(item.querySelector('img').src);
+            });
 
             // Função para abrir o modal
-            const openModal = (imgSrc, imgAlt) => {
-                modalImg.src = imgSrc;
-                modalImg.alt = imgAlt;
+            const openModal = (index) => {
+                currentImageIndex = index;
+                modalImg.src = images[currentImageIndex];
+                modalImg.alt = `Memória ${currentImageIndex + 1}`;
                 modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Impede o scroll da página ao fundo
+                document.body.style.overflow = 'hidden';
             };
             
             // Função para fechar o modal
             const closeModal = () => {
                 modal.classList.add('hidden');
-                document.body.style.overflow = ''; // Restaura o scroll da página
+                document.body.style.overflow = '';
+            };
+
+            // Função para exibir a próxima imagem
+            const showNextImage = () => {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                modalImg.src = images[currentImageIndex];
+                modalImg.alt = `Memória ${currentImageIndex + 1}`;
+            };
+
+            // Função para exibir a imagem anterior
+            const showPrevImage = () => {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                modalImg.src = images[currentImageIndex];
+                modalImg.alt = `Memória ${currentImageIndex + 1}`;
             };
 
             // Adiciona o evento de clique para cada item da galeria
-            galleryItems.forEach(item => {
+            galleryItems.forEach((item, index) => {
                 item.addEventListener('click', () => {
-                    const img = item.querySelector('img');
-                    openModal(img.src, img.alt);
+                    openModal(index);
                 });
             });
 
-            // Adiciona o evento de clique para o botão de fechar
+            // Adiciona eventos de clique para os botões do modal
             closeModalBtn.addEventListener('click', closeModal);
+            nextImageBtn.addEventListener('click', showNextImage);
+            // A LINHA ABAIXO FOI CORRIGIDA
+            prevImageBtn.addEventListener('click', showPrevImage);
 
             // Adiciona o evento de clique para fechar clicando fora da imagem
             modal.addEventListener('click', (e) => {
@@ -182,16 +223,20 @@
                 }
             });
 
-            // Adiciona o evento para fechar com a tecla 'Escape'
+            // Adiciona o evento para fechar com a tecla 'Escape' e navegar com as setas do teclado
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                    closeModal();
+                if (!modal.classList.contains('hidden')) {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    }
                 }
             });
         });
     </script>
 </body>
-
 </html>
-
 
