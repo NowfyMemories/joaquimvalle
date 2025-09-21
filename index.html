@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em Memória de [Nome da Pessoa]</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos personalizados para usar as fontes do Google */
+        body {
+            font-family: 'Lora', serif;
+            background-color: #f0f2f5; /* Um cinza suave para o fundo */
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            
+            <header class="relative">
+                <img src="https://i.postimg.cc/vZYzMRxf/Fam-lia-Valle.png" 
+                     alt="Imagem de capa do memorial" 
+                     class="w-full h-48 md:h-64 object-cover">
+                
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+                    <img src="https://i.postimg.cc/yNPmJDmd/vovojoaquim.png" 
+                         alt="Foto de perfil" 
+                         class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 md:border-8 border-white shadow-lg object-cover">
+                </div>
+            </header>
+
+            <main class="pt-24 md:pt-28 pb-12 px-6 md:px-12 text-center">
+                
+                <section>
+                    <p class="text-lg md:text-xl text-gray-600">Em memória de</p>
+                    <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mt-1">Joaquim Alves do Valle</h1>
+                    <div class="flex flex-col sm:flex-row justify-center items-center sm:space-x-6 text-md md:text-lg text-gray-600 mt-4 font-light">
+                        <span class="flex items-center mb-2 sm:mb-0">
+                            <span>★ 04 de Junho de 1948</span>
+                        </span>
+                        <span class="flex items-center">
+                            <span>✞ 20 de Abril de 2002</span>
+                        </span>
+                    </div>
+
+                    <p class="mt-6 text-lg italic text-gray-500">
+                        "Sempre siga o caminho da fé e da esperança."
+                    </p>
+                </section>
+
+                <section class="mt-10 text-left border-t pt-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Nossa Lembrança</h2>
+                    <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                        Com imenso amor e saudade, prestamos esta homenagem a Joaquim Alves do Valle, um homem de muitas jornadas e de um coração imenso. Nascido em 4 de junho de 1948, foi agricultor na forte época do algodão, deixando sua marca na terra que tanto amava. Serviu sua comunidade como vereador e funcionário público em Itambaracá, sempre com dedicação e integridade. Casou-se duas vezes, sendo o amado pai de nove filhos: Claudineia, Claudio, Claudete, Lucineia, Lucilene, Reginaldo, Katia, Rodrigo e Ademir.
+
+						Sua partida deixa uma imensa saudade, mas também a certeza de que sua história e seus ensinamentos permanecerão vivos no coração de toda a sua família e de todos que tiveram o privilégio de conhecê-lo.
+
+						Esta é uma homenagem de toda a sua família, que o amará para sempre.
+                    </p>
+                </section>
+                
+                <section class="mt-10 text-left border-t pt-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Memórias em Fotos</h2>
+                    <div id="photo-gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="gallery-item overflow-hidden rounded-lg shadow-md cursor-pointer">
+                            <img src="https://i.postimg.cc/TYcR73VD/498193640-4168231090063812-2389203846793812298-n.jpg" alt="Memória 1" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg shadow-md cursor-pointer">
+                            <img src="https://placehold.co/400x400/c9c9c9/ffffff?text=Memória+2" alt="Memória 2" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg shadow-md cursor-pointer">
+                            <img src="https://placehold.co/400x400/b8b8b8/ffffff?text=Memória+3" alt="Memória 3" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg shadow-md cursor-pointer">
+                            <img src="https://placehold.co/400x400/adadad/ffffff?text=Memória+4" alt="Memória 4" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                        </div>
+                         </div>
+                </section>
+                <section class="mt-10 text-left border-t pt-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Lembranças em Áudio</h2>
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 mb-2">Mensagem de Aniversário - 2022</p>
+                            <audio controls class="w-full">
+                                <source src="URL_DO_SEU_ARQUIVO_DE_AUDIO_1.mp3" type="audio/mpeg">
+                                Seu navegador não suporta o elemento de áudio.
+                            </audio>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 mb-2">Música Favorita</p>
+                            <audio controls class="w-full">
+                                <source src="URL_DO_SEU_ARQUIVO_DE_AUDIO_2.mp3" type="audio/mpeg">
+                                Seu navegador não suporta o elemento de áudio.
+                            </audio>
+                        </div>
+                        </div>
+                </section>
+
+                <section class="mt-10 text-left border-t pt-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Vídeos de Lembranças</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                            <p class="font-semibold text-gray-700 mb-3">Passeio em Família</p>
+                            <div class="aspect-video w-full rounded-lg overflow-hidden">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                            <p class="font-semibold text-gray-700 mb-3">Mensagem Especial</p>
+                            <div class="aspect-video w-full rounded-lg overflow-hidden">
+                                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        </div>
+                </section>
+                </main>
+        </div>
+
+        <footer class="text-center mt-8 pb-4">
+            <p class="text-gray-500 text-sm">Eternamente em nossos corações.</p>
+        </footer>
+    </div>
+
+    <div class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-20">
+        <button id="shareButton" title="Compartilhar" class="p-3 bg-gray-100 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 hidden transition-opacity duration-300">
+        <img id="modalImage" src="" alt="Imagem ampliada" class="max-w-[90%] max-h-[90%] object-contain rounded-lg shadow-xl">
+        <button id="closeModal" title="Voltar" class="absolute top-4 right-6 text-white text-5xl font-bold hover:text-gray-300 transition-colors">&times;</button>
+    </div>
+    <script>
+        // Script do botão de compartilhar (existente)
+        const shareButton = document.getElementById('shareButton');
+        shareButton.addEventListener('click', async () => {
+            const shareData = {
+                title: document.title,
+                text: 'Lembranças de ' + document.querySelector('h1').textContent,
+                url: window.location.href
+            };
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Link do memorial copiado para a área de transferência!');
+                }
+            } catch (err) {
+                console.error('Erro ao compartilhar:', err);
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Não foi possível compartilhar. O link foi copiado para a área de transferência.');
+                } catch (copyErr) {
+                    console.error('Erro ao copiar o link:', copyErr);
+                    alert('Não foi possível compartilhar ou copiar o link.');
+                }
+            }
+        });
+
+        // SCRIPT DA GALERIA DE FOTOS (NOVO)
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModalBtn = document.getElementById('closeModal');
+
+            // Função para abrir o modal
+            const openModal = (imgSrc, imgAlt) => {
+                modalImg.src = imgSrc;
+                modalImg.alt = imgAlt;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Impede o scroll da página ao fundo
+            };
+            
+            // Função para fechar o modal
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Restaura o scroll da página
+            };
+
+            // Adiciona o evento de clique para cada item da galeria
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    openModal(img.src, img.alt);
+                });
+            });
+
+            // Adiciona o evento de clique para o botão de fechar
+            closeModalBtn.addEventListener('click', closeModal);
+
+            // Adiciona o evento de clique para fechar clicando fora da imagem
+            modal.addEventListener('click', (e) => {
+                if (e.target.id === 'imageModal') {
+                    closeModal();
+                }
+            });
+
+            // Adiciona o evento para fechar com a tecla 'Escape'
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
