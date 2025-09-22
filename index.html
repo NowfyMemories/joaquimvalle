@@ -12,10 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Estilos personalizados para usar as fontes do Google */
         body {
             font-family: 'Lora', serif;
-            background-color: #f0f2f5; /* Um cinza suave para o fundo */
+            background-color: #f0f2f5;
         }
         h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
@@ -130,7 +129,8 @@
     </div>
 
 <script>
-        // Script do botão de compartilhar (existente)
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- SCRIPT DE COMPARTILHAMENTO ---
         const shareButton = document.getElementById('shareButton');
         shareButton.addEventListener('click', async () => {
             const shareData = {
@@ -157,86 +157,86 @@
             }
         });
 
-        // SCRIPT DA GALERIA DE FOTOS (CORRIGIDO)
-        document.addEventListener('DOMContentLoaded', () => {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const closeModalBtn = document.getElementById('closeModal');
-            const nextImageBtn = document.getElementById('nextImage');
-            const prevImageBtn = document.getElementById('prevImage');
+        // --- SCRIPT DA GALERIA DE FOTOS ---
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+        const nextImageBtn = document.getElementById('nextImage');
+        const prevImageBtn = document.getElementById('prevImage');
 
-            let currentImageIndex = 0;
-            const images = []; // Array para armazenar as URLs de todas as imagens
+        let currentImageIndex = 0;
+        const images = Array.from(galleryItems).map(item => item.querySelector('img').src);
 
-            // Preenche o array de imagens ao carregar a página
-            galleryItems.forEach(item => {
-                images.push(item.querySelector('img').src);
-            });
+        const openModal = (index) => {
+            currentImageIndex = index;
+            modalImg.src = images[currentImageIndex];
+            modalImg.alt = `Memória ${currentImageIndex + 1}`;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        };
+        
+        const closeModal = () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        };
 
-            // Função para abrir o modal
-            const openModal = (index) => {
-                currentImageIndex = index;
-                modalImg.src = images[currentImageIndex];
-                modalImg.alt = `Memória ${currentImageIndex + 1}`;
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            };
-            
-            // Função para fechar o modal
-            const closeModal = () => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            };
+        const showNextImage = () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            modalImg.src = images[currentImageIndex];
+            modalImg.alt = `Memória ${currentImageIndex + 1}`;
+        };
 
-            // Função para exibir a próxima imagem
-            const showNextImage = () => {
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-                modalImg.src = images[currentImageIndex];
-                modalImg.alt = `Memória ${currentImageIndex + 1}`;
-            };
+        const showPrevImage = () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            modalImg.src = images[currentImageIndex];
+            modalImg.alt = `Memória ${currentImageIndex + 1}`;
+        };
 
-            // Função para exibir a imagem anterior
-            const showPrevImage = () => {
-                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-                modalImg.src = images[currentImageIndex];
-                modalImg.alt = `Memória ${currentImageIndex + 1}`;
-            };
-
-            // Adiciona o evento de clique para cada item da galeria
-            galleryItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    openModal(index);
-                });
-            });
-
-            // Adiciona eventos de clique para os botões do modal
-            closeModalBtn.addEventListener('click', closeModal);
-            nextImageBtn.addEventListener('click', showNextImage);
-            // A LINHA ABAIXO FOI CORRIGIDA
-            prevImageBtn.addEventListener('click', showPrevImage);
-
-            // Adiciona o evento de clique para fechar clicando fora da imagem
-            modal.addEventListener('click', (e) => {
-                if (e.target.id === 'imageModal') {
-                    closeModal();
-                }
-            });
-
-            // Adiciona o evento para fechar com a tecla 'Escape' e navegar com as setas do teclado
-            document.addEventListener('keydown', (e) => {
-                if (!modal.classList.contains('hidden')) {
-                    if (e.key === 'Escape') {
-                        closeModal();
-                    } else if (e.key === 'ArrowRight') {
-                        showNextImage();
-                    } else if (e.key === 'ArrowLeft') {
-                        showPrevImage();
-                    }
-                }
-            });
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openModal(index));
         });
-    </script>
+
+        closeModalBtn.addEventListener('click', closeModal);
+        nextImageBtn.addEventListener('click', showNextImage);
+        prevImageBtn.addEventListener('click', showPrevImage);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target.id === 'imageModal') closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') showNextImage();
+                if (e.key === 'ArrowLeft') showPrevImage();
+            }
+        });
+        
+        // --- LÓGICA PARA NAVEGAÇÃO POR SWIPE NO CELULAR ---
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        modalImg.addEventListener('touchstart', (event) => {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
+
+        modalImg.addEventListener('touchend', (event) => {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipeGesture();
+        }, { passive: true });
+
+        function handleSwipeGesture() {
+            // Deslize para a esquerda (próxima imagem)
+            if (touchEndX < touchStartX - 50) { 
+                showNextImage();
+            }
+            // Deslize para a direita (imagem anterior)
+            if (touchEndX > touchStartX + 50) { 
+                showPrevImage();
+            }
+        }
+    });
+</script>
 </body>
 </html>
-
